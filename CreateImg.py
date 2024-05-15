@@ -74,6 +74,7 @@ while True:
     frames2.append(frame)
     
     # Guardar el frame actual como una imagen
+    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     cv2.imwrite(f'./img/frame_sk_{frame_count}.jpg', img)
     cv2.imwrite(f'./img/frame_{frame_count}.jpg', frame)
     frame_count += 1
