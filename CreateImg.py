@@ -1,7 +1,6 @@
 import mediapipe as mp 
 import cv2
 import numpy as np 
-from HandTrackClases import handDetector
 import imageio
 
 mp_hands =  mp.solutions.hands
@@ -22,6 +21,7 @@ cap  = cv2.VideoCapture('caida4.mp4')
 # Lista para almacenar los frames del video
 frames = []
 frames2 = []
+frame_count = 0
 
 while True:
     ret, frame =  cap.read()
@@ -72,7 +72,12 @@ while True:
     frames.append(img)
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frames2.append(frame)
+    
+    # Guardar el frame actual como una imagen
+    cv2.imwrite(f'./img/frame_sk_{frame_count}.jpg', img)
+    cv2.imwrite(f'./img/frame_{frame_count}.jpg', frame)
+    frame_count += 1
 
 # Guardar los frames como un gif
-imageio.mimsave('/home/jesus/Learning/learning.gif', frames)
-imageio.mimsave('/home/jesus/Learning/learning2.gif', frames2)
+imageio.mimsave('./img/learning.gif', frames)
+imageio.mimsave('./img/learning2.gif', frames2)
